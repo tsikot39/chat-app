@@ -1,26 +1,513 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-poppins);
+  --font-mono: var(--font-poppins-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.75rem;
+  /* NexusChat Theme - Vibrant Teal & Purple Gradient */
+  --background: oklch(0.98 0.005 180);
+  --foreground: oklch(0.12 0.02 210);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0.02 210);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0.02 210);
+  --primary: oklch(0.52 0.18 180); /* Vibrant teal */
+  --primary-foreground: oklch(0.98 0.005 180);
+  --secondary: oklch(0.94 0.01 200);
+  --secondary-foreground: oklch(0.18 0.04 200);
+  --muted: oklch(0.96 0.008 200);
+  --muted-foreground: oklch(0.42 0.06 190);
+  --accent: oklch(0.65 0.15 280); /* Purple accent */
+  --accent-foreground: oklch(0.98 0.005 280);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.98 0.005 25);
+  --border: oklch(0.88 0.015 190);
+  --input: oklch(0.97 0.005 190);
+  --ring: oklch(0.52 0.18 180);
+  --chart-1: oklch(0.52 0.18 180);
+  --chart-2: oklch(0.65 0.15 280);
+  --chart-3: oklch(0.7 0.12 60);
+  --chart-4: oklch(0.6 0.14 320);
+  --chart-5: oklch(0.55 0.16 140);
+  --sidebar: oklch(0.96 0.01 185);
+  --sidebar-foreground: oklch(0.15 0.03 200);
+  --sidebar-primary: oklch(0.52 0.18 180);
+  --sidebar-primary-foreground: oklch(0.98 0.005 180);
+  --sidebar-accent: oklch(0.93 0.015 190);
+  --sidebar-accent-foreground: oklch(0.25 0.04 190);
+  --sidebar-border: oklch(0.85 0.02 185);
+  --sidebar-ring: oklch(0.52 0.18 180);
+}
+
+.dark {
+  /* NexusChat Dark Theme - Deep Ocean & Neon Accents */
+  --background: oklch(0.06 0.02 220);
+  --foreground: oklch(0.94 0.008 180);
+  --card: oklch(0.1 0.025 215);
+  --card-foreground: oklch(0.94 0.008 180);
+  --popover: oklch(0.1 0.025 215);
+  --popover-foreground: oklch(0.94 0.008 180);
+  --primary: oklch(0.6 0.2 175); /* Bright cyan */
+  --primary-foreground: oklch(0.06 0.02 220);
+  --secondary: oklch(0.16 0.03 210);
+  --secondary-foreground: oklch(0.88 0.01 180);
+  --muted: oklch(0.14 0.025 215);
+  --muted-foreground: oklch(0.68 0.08 190);
+  --accent: oklch(0.7 0.18 285); /* Bright purple */
+  --accent-foreground: oklch(0.06 0.02 220);
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.94 0.008 25);
+  --border: oklch(0.24 0.03 210);
+  --input: oklch(0.12 0.025 215);
+  --ring: oklch(0.6 0.2 175);
+  --chart-1: oklch(0.6 0.2 175);
+  --chart-2: oklch(0.7 0.18 285);
+  --chart-3: oklch(0.75 0.15 65);
+  --chart-4: oklch(0.65 0.16 320);
+  --chart-5: oklch(0.6 0.18 140);
+  --sidebar: oklch(0.08 0.02 218);
+  --sidebar-foreground: oklch(0.9 0.01 185);
+  --sidebar-primary: oklch(0.6 0.2 175);
+  --sidebar-primary-foreground: oklch(0.06 0.02 220);
+  --sidebar-accent: oklch(0.14 0.025 215);
+  --sidebar-accent-foreground: oklch(0.82 0.015 180);
+  --sidebar-border: oklch(0.18 0.025 212);
+  --sidebar-ring: oklch(0.6 0.2 175);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Ensure all text elements use Poppins */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  div,
+  a,
+  button,
+  input,
+  textarea,
+  label,
+  li,
+  td,
+  th {
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Cursor pointer for interactive elements */
+  button,
+  [role="button"],
+  [type="button"],
+  [type="submit"],
+  [type="reset"],
+  a,
+  a:link,
+  a:visited,
+  label[for],
+  select,
+  summary,
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  /* Ensure disabled buttons don't have pointer cursor */
+  button:disabled,
+  [role="button"]:disabled,
+  [type="button"]:disabled,
+  [type="submit"]:disabled,
+  [type="reset"]:disabled,
+  .cursor-not-allowed {
+    cursor: not-allowed;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* NexusChat Custom Styles */
+@layer components {
+  /* Enhanced button styling for better visibility */
+  .btn-outline {
+    background: oklch(1 0 0);
+    border: 2px solid oklch(0.52 0.18 180);
+    color: oklch(0.12 0.02 210);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 4px oklch(0 0 0 / 0.05);
+  }
+
+  .btn-outline:hover {
+    background: oklch(0.52 0.18 180);
+    border-color: oklch(0.52 0.18 180);
+    color: oklch(1 0 0) !important;
+    box-shadow: 0 8px 16px oklch(0.52 0.18 180 / 0.25);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline:hover * {
+    color: oklch(
+      1 0 0
+    ) !important; /* Force all child text to be white on hover */
+  }
+
+  .btn-outline:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px oklch(0.52 0.18 180 / 0.2);
+  }
+
+  .dark .btn-outline {
+    background: oklch(0.12 0.025 215);
+    border: 2px solid oklch(0.6 0.2 175);
+    color: oklch(0.94 0.008 180);
+    box-shadow: 0 2px 4px oklch(0 0 0 / 0.2);
+  }
+
+  .dark .btn-outline:hover {
+    background: oklch(0.6 0.2 175);
+    border-color: oklch(0.6 0.2 175);
+    color: oklch(1 0 0) !important;
+    box-shadow: 0 8px 20px oklch(0.6 0.2 175 / 0.4);
+    transform: translateY(-1px);
+  }
+
+  .dark .btn-outline:hover * {
+    color: oklch(
+      1 0 0
+    ) !important; /* Force all child text to be white on hover in dark mode too */
+  }
+
+  /* Additional specificity for Shadcn Button components */
+  .dark button[data-variant="outline"]:hover,
+  .dark .btn-outline button:hover,
+  .dark button.btn-outline:hover {
+    color: oklch(1 0 0) !important;
+    background: oklch(0.6 0.2 175) !important;
+    border-color: oklch(0.6 0.2 175) !important;
+  }
+
+  .dark button[data-variant="outline"]:hover *,
+  .dark .btn-outline button:hover *,
+  .dark button.btn-outline:hover * {
+    color: oklch(1 0 0) !important;
+  }
+
+  /* Override Shadcn's default outline button hover in dark mode */
+  .dark [class*="hover:bg-accent"]:hover {
+    background: oklch(0.6 0.2 175) !important;
+  }
+
+  .dark [class*="hover:text-accent-foreground"]:hover {
+    color: oklch(1 0 0) !important;
+  }
+
+  /* Ensure tab buttons specifically have white text on hover */
+  .dark button[variant="outline"]:hover,
+  .dark [data-variant="outline"]:hover {
+    color: oklch(1 0 0) !important;
+    background: oklch(0.6 0.2 175) !important;
+  }
+
+  .dark .btn-outline:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px oklch(0.6 0.2 175 / 0.3);
+  }
+
+  /* Google Sign-in Button - Extra Distinctive */
+  .google-signin-btn {
+    background: linear-gradient(
+      135deg,
+      oklch(1 0 0),
+      oklch(0.98 0.005 180)
+    ) !important;
+    border: 2px solid oklch(0.52 0.18 180) !important;
+    color: oklch(0.12 0.02 210) !important;
+  }
+
+  .google-signin-btn:hover {
+    background: oklch(0.52 0.18 180) !important;
+    color: oklch(1 0 0) !important;
+    box-shadow: 0 8px 20px oklch(0.52 0.18 180 / 0.3) !important;
+  }
+
+  .dark .google-signin-btn {
+    background: linear-gradient(
+      135deg,
+      oklch(0.14 0.025 215),
+      oklch(0.12 0.025 220)
+    ) !important;
+    border: 2px solid oklch(0.6 0.2 175) !important;
+    color: oklch(0.94 0.008 180) !important;
+  }
+
+  .dark .google-signin-btn:hover {
+    background: oklch(0.6 0.2 175) !important;
+    color: oklch(0.06 0.02 220) !important;
+    box-shadow: 0 8px 24px oklch(0.6 0.2 175 / 0.4) !important;
+  }
+
+  /* Enhanced Tab Buttons - Same style as Google sign-in button */
+  .enhanced-tab-btn {
+    background: linear-gradient(
+      135deg,
+      oklch(1 0 0),
+      oklch(0.98 0.005 180)
+    ) !important;
+    border: 2px solid oklch(0.52 0.18 180) !important;
+    color: oklch(0.12 0.02 210) !important;
+    font-weight: 500;
+  }
+
+  .enhanced-tab-btn:hover {
+    background: oklch(0.52 0.18 180) !important;
+    color: oklch(1 0 0) !important;
+    box-shadow: 0 8px 20px oklch(0.52 0.18 180 / 0.3) !important;
+  }
+
+  .enhanced-tab-btn:hover * {
+    color: oklch(1 0 0) !important;
+  }
+
+  /* Active state for enhanced tab buttons */
+  .enhanced-tab-btn.active {
+    background: oklch(0.52 0.18 180) !important;
+    color: oklch(1 0 0) !important;
+    box-shadow: 0 4px 12px oklch(0.52 0.18 180 / 0.2) !important;
+  }
+
+  .enhanced-tab-btn.active * {
+    color: oklch(1 0 0) !important;
+  }
+
+  .dark .enhanced-tab-btn {
+    background: linear-gradient(
+      135deg,
+      oklch(0.14 0.025 215),
+      oklch(0.12 0.025 220)
+    ) !important;
+    border: 2px solid oklch(0.6 0.2 175) !important;
+    color: oklch(0.94 0.008 180) !important;
+  }
+
+  .dark .enhanced-tab-btn:hover {
+    background: oklch(0.6 0.2 175) !important;
+    color: oklch(1 0 0) !important;
+    box-shadow: 0 8px 24px oklch(0.6 0.2 175 / 0.4) !important;
+  }
+
+  .dark .enhanced-tab-btn:hover * {
+    color: oklch(1 0 0) !important;
+  }
+
+  .dark .enhanced-tab-btn.active {
+    background: oklch(0.6 0.2 175) !important;
+    color: oklch(1 0 0) !important;
+    box-shadow: 0 4px 16px oklch(0.6 0.2 175 / 0.3) !important;
+  }
+
+  .dark .enhanced-tab-btn.active * {
+    color: oklch(1 0 0) !important;
+  }
+
+  /* Chat message bubbles with gradient backgrounds */
+  .message-sent {
+    background: linear-gradient(
+      135deg,
+      oklch(0.52 0.18 180),
+      oklch(0.58 0.16 175)
+    );
+    color: oklch(0.12 0.02 210);
+  }
+
+  .message-received {
+    background: linear-gradient(
+      135deg,
+      oklch(0.52 0.18 180),
+      oklch(0.58 0.16 175)
+    );
+    color: oklch(0.12 0.02 210);
+  }
+
+  .dark .message-received {
+    background: linear-gradient(
+      135deg,
+      oklch(0.52 0.18 180),
+      oklch(0.58 0.16 175)
+    );
+    color: oklch(0.12 0.02 210);
+  }
+
+  /* FORCE override bg-muted for received messages in chat - same as sent messages */
+  .space-y-4 .bg-muted {
+    background: linear-gradient(
+      135deg,
+      oklch(0.52 0.18 180),
+      oklch(0.58 0.16 175)
+    ) !important;
+    color: oklch(0.12 0.02 210) !important;
+  }
+
+  .dark .space-y-4 .bg-muted {
+    background: linear-gradient(
+      135deg,
+      oklch(0.52 0.18 180),
+      oklch(0.58 0.16 175)
+    ) !important;
+    color: oklch(0.12 0.02 210) !important;
+  }
+
+  /* Chat input with subtle glow */
+  .chat-input {
+    background: oklch(0.97 0.005 190);
+    border: 1px solid oklch(0.88 0.015 190);
+    transition: all 0.2s ease;
+  }
+
+  .chat-input:focus {
+    border-color: oklch(0.52 0.18 180);
+    box-shadow: 0 0 0 3px oklch(0.52 0.18 180 / 0.1);
+  }
+
+  .dark .chat-input {
+    background: oklch(0.12 0.025 215);
+    border-color: oklch(0.24 0.03 210);
+  }
+
+  .dark .chat-input:focus {
+    border-color: oklch(0.6 0.2 175);
+    box-shadow: 0 0 0 3px oklch(0.6 0.2 175 / 0.2);
+  }
+
+  /* Online status indicator */
+  .status-online {
+    background: oklch(0.6 0.18 140);
+    box-shadow: 0 0 6px oklch(0.6 0.18 140 / 0.4);
+  }
+
+  /* Typing indicator with subtle animation */
+  .typing-indicator {
+    background: linear-gradient(
+      90deg,
+      oklch(0.65 0.15 280),
+      oklch(0.52 0.18 180),
+      oklch(0.65 0.15 280)
+    );
+    background-size: 200% 100%;
+    animation: gradient-shift 2s ease-in-out infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Sidebar with subtle gradient */
+  .sidebar-gradient {
+    background: linear-gradient(
+      180deg,
+      oklch(0.96 0.01 185),
+      oklch(0.94 0.012 190)
+    );
+  }
+
+  .dark .sidebar-gradient {
+    background: linear-gradient(
+      180deg,
+      oklch(0.08 0.02 218),
+      oklch(0.06 0.022 220)
+    );
+  }
+
+  /* Custom scrollbar for chat */
+  .chat-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat-scroll::-webkit-scrollbar-track {
+    background: oklch(0.95 0.01 200);
+    border-radius: 3px;
+  }
+
+  .chat-scroll::-webkit-scrollbar-thumb {
+    background: oklch(0.7 0.08 190);
+    border-radius: 3px;
+  }
+
+  .chat-scroll::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.52 0.18 180);
+  }
+
+  .dark .chat-scroll::-webkit-scrollbar-track {
+    background: oklch(0.14 0.025 215);
+  }
+
+  .dark .chat-scroll::-webkit-scrollbar-thumb {
+    background: oklch(0.4 0.05 200);
+  }
+
+  .dark .chat-scroll::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.6 0.2 175);
+  }
+
+  /* Delete conversation button - override all background styles */
+  .delete-conversation-btn:hover,
+  .dark .delete-conversation-btn:hover,
+  button.delete-conversation-btn:hover,
+  .dark button.delete-conversation-btn:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
 }
